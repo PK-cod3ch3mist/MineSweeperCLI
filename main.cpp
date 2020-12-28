@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#define SIZE 14
+#define SIZE 7
 
 // Create a random grid creating function
 // This function takes the difficulty, and array as argument
