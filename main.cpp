@@ -95,11 +95,6 @@ void reveal (char showGrid[SIZE][SIZE], int playGrid[SIZE][SIZE], int row, int c
             reveal(showGrid, playGrid, row, col + 1, 0);
             reveal(showGrid, playGrid, row - 1, col, 0);
             reveal(showGrid, playGrid, row + 1, col, 0);
-            reveal(showGrid, playGrid, row + 1, col - 1, 0);
-            reveal(showGrid, playGrid, row - 1, col + 1, 0);
-            reveal(showGrid, playGrid, row - 1, col - 1, 0);
-            reveal(showGrid, playGrid, row + 1, col + 1, 0);
-
         }
     }
 
@@ -116,10 +111,6 @@ void reveal (char showGrid[SIZE][SIZE], int playGrid[SIZE][SIZE], int row, int c
             reveal(showGrid, playGrid, row, col + 1, 0);
             reveal(showGrid, playGrid, row - 1, col, 0);
             reveal(showGrid, playGrid, row + 1, col, 0);
-            reveal(showGrid, playGrid, row + 1, col - 1, 0);
-            reveal(showGrid, playGrid, row - 1, col + 1, 0);
-            reveal(showGrid, playGrid, row - 1, col - 1, 0);
-            reveal(showGrid, playGrid, row + 1, col + 1, 0);
         }
     }
 
@@ -128,8 +119,8 @@ void reveal (char showGrid[SIZE][SIZE], int playGrid[SIZE][SIZE], int row, int c
 }
 
 void display (char showGrid[SIZE][SIZE]) {
-    cout << "\\ | 0 1 2 3 4 5 6 7 8 9 10 11 12 13\n";
-    cout << "____________________________________\n";
+    cout << "\\ | 0 1 2 3 4 5 6\n";
+    cout << "------------------\n";
     for (int i = 0; i < SIZE; i++){
         cout << i << " |";
         for (int j = 0; j < SIZE; j++){
