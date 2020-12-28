@@ -47,16 +47,17 @@ void createGrid (int difLev, int playGrid[SIZE][SIZE]) {
     int flag = 0;
     for (int i = 0; i < SIZE; i++) {
 	    for (int j = 0; j < SIZE; j++) {
-	        if(playGrid[i][j] == '.') {
-		        if (playGrid[(i-1)][j] == '*') flag++;
-		        if (playGrid[(i+1)][j] == '*') flag++;
-		        if (playGrid[i][(j-1)] == '*') flag++;
-		        if (playGrid[i][(j+1)] == '*') flag++;
-		        if (playGrid[(i+1)][(j+1)] == '*') flag++;
-		        if (playGrid[(i-1)][(j-1)] == '*') flag++;
-		        if (playGrid[(i+1)][(j-1)] == '*') flag++;
-		        if (playGrid[(i-1)][(j+1)] == '*') flag++;
+	        if(playGrid[i][j] != -1) {
+		        if (playGrid[(i-1)][j] == -1) flag++;
+		        if (playGrid[(i+1)][j] == -1) flag++;
+		        if (playGrid[i][(j-1)] == -1) flag++;
+		        if (playGrid[i][(j+1)] == -1) flag++;
+		        if (playGrid[(i+1)][(j+1)] == -1) flag++;
+		        if (playGrid[(i-1)][(j-1)] == -1) flag++;
+		        if (playGrid[(i+1)][(j-1)] == -1) flag++;
+		        if (playGrid[(i-1)][(j+1)] == -1) flag++;
 	        }
+            playGrid[i][j] = flag;
 	        flag = 0;
 	    }
     }
@@ -82,14 +83,13 @@ void reveal (char showGrid[SIZE][SIZE], int playGrid[SIZE][SIZE], int row, int c
     if (select == false) {
 
         // If discovered cell is number, then return
-        if (playGrid[row][col] != 0){
-            if (playGrid[row][col] > 0)
-                showGrid[row][col] = 48 + playGrid[row][col];
+        if (playGrid[row][col] > 0) {
+                showGrid[row][col] = (char)(48 + playGrid[row][col]);
             return;
         }
 
         // If the discovered cell is empty, find other adjacent to it
-        else {
+        else if (playGrid[row][col] == 0) {
             showGrid[row][col] = '_';
             reveal(showGrid, playGrid, row, col - 1, 0);
             reveal(showGrid, playGrid, row, col + 1, 0);
