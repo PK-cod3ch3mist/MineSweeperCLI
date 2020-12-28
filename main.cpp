@@ -128,8 +128,8 @@ void reveal (char showGrid[SIZE][SIZE], int playGrid[SIZE][SIZE], int row, int c
 }
 
 void display (char showGrid[SIZE][SIZE]) {
-    cout << "\\ | 0 1 2 3 4 5 6 7 8 9 10 11 12 13";
-    cout << "____________________________________";
+    cout << "\\ | 0 1 2 3 4 5 6 7 8 9 10 11 12 13\n";
+    cout << "____________________________________\n";
     for (int i = 0; i < SIZE; i++){
         cout << i << " |";
         for (int j = 0; j < SIZE; j++){
