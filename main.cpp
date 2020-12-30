@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#define SIZE 7
+#define SIZE 10
 
 // Create a random grid creating function
 // This function takes the difficulty, and array as argument
@@ -47,17 +47,20 @@ void createGrid (int difLev, int playGrid[SIZE][SIZE]) {
     int flag = 0;
     for (int i = 0; i < SIZE; i++) {
 	    for (int j = 0; j < SIZE; j++) {
+
+            // If the current cell is not a mine, then see the adjacent cells
+            // And accordingly set its value
 	        if(playGrid[i][j] != -1) {
-		        if (playGrid[(i-1)][j] == -1) flag++;
-		        if (playGrid[(i+1)][j] == -1) flag++;
-		        if (playGrid[i][(j-1)] == -1) flag++;
-		        if (playGrid[i][(j+1)] == -1) flag++;
-		        if (playGrid[(i+1)][(j+1)] == -1) flag++;
-		        if (playGrid[(i-1)][(j-1)] == -1) flag++;
-		        if (playGrid[(i+1)][(j-1)] == -1) flag++;
-		        if (playGrid[(i-1)][(j+1)] == -1) flag++;
-	        }
-            playGrid[i][j] = flag;
+		        if (playGrid[i-1][j] == -1 && (i-1)>=0) ++flag;
+		        if (playGrid[i+1][j] == -1 && (i+1)<SIZE) ++flag;
+		        if (playGrid[i][j-1] == -1 && (j-1)>=0) ++flag;
+		        if (playGrid[i][j+1] == -1 && (j+1)<SIZE) ++flag;
+		        if (playGrid[i+1][j+1] == -1 && (j+1)<SIZE && (i+1)<SIZE) ++flag;
+		        if (playGrid[i-1][j-1] == -1 && (j-1)>=0 && (i-1)>=0) ++flag;
+		        if (playGrid[i+1][j-1] == -1 && (j-1)>=0 && (i+1)<SIZE) ++flag;
+		        if (playGrid[i-1][j+1] == -1 && (j+1)<SIZE && (i-1)>=0) ++flag;
+                playGrid[i][j] = flag;
+            }
 	        flag = 0;
 	    }
     }
@@ -119,12 +122,17 @@ void reveal (char showGrid[SIZE][SIZE], int playGrid[SIZE][SIZE], int row, int c
 }
 
 void display (char showGrid[SIZE][SIZE]) {
-    cout << "\\ | 0 1 2 3 4 5 6\n";
-    cout << "------------------\n";
+    cout << "     \e[1m0 1 2 3 4 5 6 7 8 9\e[0m\n";
+    cout << "  \e[30m\e[47m----------------------\e[0m\n";
     for (int i = 0; i < SIZE; i++){
-        cout << i << " |";
+        cout << "\e[1m" << i << " \e[30m\e[47m|\e[0m ";
         for (int j = 0; j < SIZE; j++){
-            cout << " " << showGrid[i][j];
+            cout << " ";
+            if (showGrid[i][j] == 'P') cout << "\e[31m";
+            if (showGrid[i][j] == '1') cout << "\e[32m";
+            if (showGrid[i][j] == '2') cout << "\e[33m";
+            if (showGrid[i][j] == '3') cout << "\e[36m";
+            cout << showGrid[i][j] << "\e[0m";
         }
         cout << endl;
     }
@@ -160,15 +168,22 @@ int main () {
     int ch = 2;
     int row = 0;
     int col = 0;
-    char cont = 'y';
     
-    while (cont == 'y') {
+    while (ch != 3) {
         system("clear");
         display(showGrid);
-        cout << "Enter 1 to place flag and 2 to reveal cell\nEnter Value: ";
+        cout << "Enter 1 to place flag \e[31m'P'\e[0m and 2 to reveal cell\nEnter 3 to exit\nEnter Value: ";
         cin >> ch;
-        cout << "Enter indices for location (row then column): ";
-        cin >> row >> col;
+        if (ch != 3) {
+            cout << "Enter indices for location (row then column): ";
+            cin >> row >> col;
+        }
+        if (showGrid[row][col] != '.') {
+            if (showGrid[row][col] != 'P') {
+                cout << "Warning: Please enter an unfilled cell\n";
+                continue;
+            }
+        }
         switch (ch){
             case 1: showGrid[row][col] = 'P';
                     break;
@@ -181,12 +196,14 @@ int main () {
                                 }
                             }
                         }
+                        system("clear");
                         display(showGrid);
                         cout << "You lose !!";
                         return 0;
                     }
                     reveal(showGrid, playGrid, row, col, true);
                     break;
+            default: break;
         }
 
         // Check for complete filling
@@ -212,8 +229,6 @@ int main () {
                 return 0;
             }
         }
-        cout << "Continue to next move? (ny): ";
-        cin >> cont;
     }
     return 0;
 }
