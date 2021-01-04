@@ -15,13 +15,11 @@ ANSI escape sequence support will be good, otherwise you won't be able to see co
 
 ## Gameplay
 All instructions will be there in the game.
-
+Starting Menu and Initial Play: 
 ![Starting Menu and Initial Play](https://github.com/PK-cod3ch3mist/MineSweeperCLI/blob/main/demogif/GIF1.gif)
-
 The different difficulty levels differ in the number of mines (however the number of mines in a game is randomized to a degree)
-
+Placing Flags: 
 ![Placing Flags](https://github.com/PK-cod3ch3mist/MineSweeperCLI/blob/main/demogif/GIF2.gif)
-
 Note that flags are denoted by the letter P.
-
+Losing/Revealing a Mine:
 ![Losing/Revealing Mine](https://github.com/PK-cod3ch3mist/MineSweeperCLI/blob/main/demogif/GIF3.gif)
