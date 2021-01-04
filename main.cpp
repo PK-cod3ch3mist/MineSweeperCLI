@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -138,6 +139,8 @@ void display (char showGrid[SIZE][SIZE]) {
 }
 
 int main () {
+    srand(time(0));
+
     char showGrid[SIZE][SIZE];
     int playGrid[SIZE][SIZE];
     for (int i = 0; i < SIZE; i++) {
@@ -173,7 +176,11 @@ int main () {
         display(showGrid);
         cout << "Enter 1 to place flag \033[31m'P'\033[0m and 2 to reveal cell\nEnter 3 to exit\nEnter Value: ";
         cin >> ch;
-        if (ch != 3) {
+        if (ch == 3) {
+            cout << "\nLeaving early? Okay!";
+            return 1;
+        }
+        else {
             cout << "Enter indices for location (row then column): ";
             cin >> row >> col;
         }
