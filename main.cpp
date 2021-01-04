@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <cstdio>
-#include <ctime>
 #include <cstdlib>
 
 using namespace std;
@@ -122,17 +121,17 @@ void reveal (char showGrid[SIZE][SIZE], int playGrid[SIZE][SIZE], int row, int c
 }
 
 void display (char showGrid[SIZE][SIZE]) {
-    cout << "     \e[1m0 1 2 3 4 5 6 7 8 9\e[0m\n";
-    cout << "  \e[30m\e[47m----------------------\e[0m\n";
+    cout << "     \033[1m0 1 2 3 4 5 6 7 8 9\033[0m\n";
+    cout << "  \033[30m\033[47m----------------------\033[0m\n";
     for (int i = 0; i < SIZE; i++){
-        cout << "\e[1m" << i << " \e[30m\e[47m|\e[0m ";
+        cout << "\033[1m" << i << " \033[30m\033[47m|\033[0m ";
         for (int j = 0; j < SIZE; j++){
             cout << " ";
-            if (showGrid[i][j] == 'P') cout << "\e[31m";
-            if (showGrid[i][j] == '1') cout << "\e[32m";
-            if (showGrid[i][j] == '2') cout << "\e[33m";
-            if (showGrid[i][j] == '3') cout << "\e[36m";
-            cout << showGrid[i][j] << "\e[0m";
+            if (showGrid[i][j] == 'P') cout << "\033[31m";
+            if (showGrid[i][j] == '1') cout << "\033[32m";
+            if (showGrid[i][j] == '2') cout << "\033[33m";
+            if (showGrid[i][j] == '3') cout << "\033[36m";
+            cout << showGrid[i][j] << "\033[0m";
         }
         cout << endl;
     }
@@ -172,7 +171,7 @@ int main () {
     while (ch != 3) {
         system("clear");
         display(showGrid);
-        cout << "Enter 1 to place flag \e[31m'P'\e[0m and 2 to reveal cell\nEnter 3 to exit\nEnter Value: ";
+        cout << "Enter 1 to place flag \033[31m'P'\033[0m and 2 to reveal cell\nEnter 3 to exit\nEnter Value: ";
         cin >> ch;
         if (ch != 3) {
             cout << "Enter indices for location (row then column): ";
