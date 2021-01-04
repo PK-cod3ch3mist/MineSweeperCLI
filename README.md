@@ -1,18 +1,17 @@
-#Minesweeper Game
-A minesweeper game created in C++ and SFML
-Created by Ord-Com
-There is also a command line version available!
+# Minesweeper Game
+A minesweeper game created in C++
 
-##Installation
-- For CLI version, it is as follows
+## Installation
+Clone the repository.
 ```shell
-git clone __link__
+git clone https://github.com/PK-cod3ch3mist/MineSweeperCLI.git
 ```
-Then got to the directory of the game and run main.cpp, alternatively, you can directly type the command for it on the terminal/console
-- For GUI version
-    - there are two options here, whether to install as an application (using cmake)
-    - or to play by running the codes
+Then go to the directory of the game and run main.cpp, alternatively, you can directly type the command for it on the terminal/console
 
-##Requirements
-- for CLI version, the only requirement is a C++ compiler, (use clang or g++)
-- for the GUI version, it would be nice to have sfml installed for running if you are using from codes. Visit the sfml website for instructions on how to install and configure it on your system. We are currently working on an installer for the game, until then,  this is the way XD.
+## Requirements
+All you need is a C++ compiler. If you are a macOS user, the executable inside the bin folder will work directly though.
+
+ANSI escape sequence support will be good, otherwise you won't be able to see colours well. 
+
+## Gameplay
+All instructions will be there in the game.
