@@ -131,23 +131,31 @@ void reveal (char showGrid[SIZE][SIZE], int playGrid[SIZE][SIZE], int row, int c
 }
 
 void display (char showGrid[SIZE][SIZE]) {
-    cout << "     \033[1m0 1 2 3 4 5 6 7 8 9 \033[0m\n";
-    cout << "  ┏━━━━━━━━━━━━━━━━━━━━━━┓\n";
+    cout << "    \033[1m0   1   2   3   4   5   6   7   8   9 \033[0m\n";
+    cout << "  ┏━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┳━━━┓\n";
     for (int i = 0; i < SIZE; i++){
-        cout << "\033[1m" << i << "\033[0m ┃ ";
+        cout << "\033[1m" << i << "\033[0m ┃";
         for (int j = 0; j < SIZE; j++){
             cout << " ";
-            if (showGrid[i][j] == 'P') cout << "\033[31m⚑\033[0m";
+            if (showGrid[i][j] == 'P') cout << "\033[31m⚑\033[0m ";
+            else if (showGrid[i][j] == '.') cout << "  ";
+            else if (showGrid[i][j] == '_') cout << "__";
+            else if (showGrid[i][j] == '*') cout << "\033[1m⎈\033[0m ";
             else {
                 if (showGrid[i][j] == '1') cout << "\033[32m";
                 if (showGrid[i][j] == '2') cout << "\033[33m";
                 if (showGrid[i][j] == '3') cout << "\033[36m";
-                cout << showGrid[i][j] << "\033[0m";
+                cout << showGrid[i][j] << "\033[0m ";
             }
+            cout << "┃";
         }
-        cout << " ┃"<< endl;
+        cout << endl;
+        if (i < (SIZE - 1)) {
+            cout << "  ┣━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━╋━━━┫";
+            cout << endl;
+        }
     }
-    cout << "  ┗━━━━━━━━━━━━━━━━━━━━━━┛" << endl;
+    cout << "  ┗━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┛" << endl;
 }
 
 int main () {
@@ -214,7 +222,7 @@ int main () {
             }
         }
 
-        cout << "Enter 1 to place flag \033[31m'P'\033[0m and 2 to reveal cell\nEnter 3 to exit\nEnter Value: ";
+        cout << "Enter 1 to place flag \033[31m" << "⚑" << "\033[0m\nEnter 2 to reveal cell\nEnter 3 to exit\nEnter Value: ";
         cin >> ch;
         if (ch == 3) {
             cout << "\nLeaving early? Okay!";
