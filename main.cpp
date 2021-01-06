@@ -98,6 +98,10 @@ void reveal (char showGrid[SIZE][SIZE], int playGrid[SIZE][SIZE], int row, int c
             reveal(showGrid, playGrid, row, col + 1, 0);
             reveal(showGrid, playGrid, row - 1, col, 0);
             reveal(showGrid, playGrid, row + 1, col, 0);
+            reveal(showGrid, playGrid, row + 1, col + 1, 0);
+            reveal(showGrid, playGrid, row + 1, col - 1, 0);
+            reveal(showGrid, playGrid, row - 1, col + 1, 0);
+            reveal(showGrid, playGrid, row - 1, col - 1, 0);
         }
     }
 
@@ -114,6 +118,11 @@ void reveal (char showGrid[SIZE][SIZE], int playGrid[SIZE][SIZE], int row, int c
             reveal(showGrid, playGrid, row, col + 1, 0);
             reveal(showGrid, playGrid, row - 1, col, 0);
             reveal(showGrid, playGrid, row + 1, col, 0);
+            reveal(showGrid, playGrid, row + 1, col + 1, 0);
+            reveal(showGrid, playGrid, row + 1, col - 1, 0);
+            reveal(showGrid, playGrid, row - 1, col + 1, 0);
+            reveal(showGrid, playGrid, row - 1, col - 1, 0);
+
         }
     }
 
@@ -122,20 +131,23 @@ void reveal (char showGrid[SIZE][SIZE], int playGrid[SIZE][SIZE], int row, int c
 }
 
 void display (char showGrid[SIZE][SIZE]) {
-    cout << "     \033[1m0 1 2 3 4 5 6 7 8 9\033[0m\n";
-    cout << "  \033[30m\033[47m----------------------\033[0m\n";
+    cout << "     \033[1m0 1 2 3 4 5 6 7 8 9 \033[0m\n";
+    cout << "  ┏━━━━━━━━━━━━━━━━━━━━━━┓\n";
     for (int i = 0; i < SIZE; i++){
-        cout << "\033[1m" << i << " \033[30m\033[47m|\033[0m ";
+        cout << "\033[1m" << i << "\033[0m ┃ ";
         for (int j = 0; j < SIZE; j++){
             cout << " ";
-            if (showGrid[i][j] == 'P') cout << "\033[31m";
-            if (showGrid[i][j] == '1') cout << "\033[32m";
-            if (showGrid[i][j] == '2') cout << "\033[33m";
-            if (showGrid[i][j] == '3') cout << "\033[36m";
-            cout << showGrid[i][j] << "\033[0m";
+            if (showGrid[i][j] == 'P') cout << "\033[31m⚑\033[0m";
+            else {
+                if (showGrid[i][j] == '1') cout << "\033[32m";
+                if (showGrid[i][j] == '2') cout << "\033[33m";
+                if (showGrid[i][j] == '3') cout << "\033[36m";
+                cout << showGrid[i][j] << "\033[0m";
+            }
         }
-        cout << endl;
+        cout << " ┃"<< endl;
     }
+    cout << "  ┗━━━━━━━━━━━━━━━━━━━━━━┛" << endl;
 }
 
 int main () {
@@ -152,11 +164,15 @@ int main () {
 
     system("clear");
 
-    cout << "###### Welcome To Minesweeper v1.0 ######\n";
-    cout << "-----------------------------------------\n";
-    cout << "Select a difficulty level:\n";
-    cout << "Select 1 for Easy\nSelect 2 for Medium\nSelect 3 for Hard\n";
-    cout << "Your choice: ";
+    cout << "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓" << endl;
+    cout << "┃      "; cout << "\033[1mWelcome To Minesweeper v1.0\033[0m"; cout << "      ┃" << endl;
+    cout << "┃═══════════════════════════════════════┃" << endl;
+    cout << "┃"; cout << "       Select a difficulty level       "; cout << "┃" << endl;
+    cout << "┃" << "Select 1 for Easy                      " << "┃" << endl;
+    cout << "┃" << "Select 2 for Medium                    " << "┃" << endl;
+    cout << "┃" << "Select 3 for Hard                      " << "┃" << endl;
+    cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛" << endl;
+    cout << "\nYour choice: ";
     int diffLev = 0;
     cin >> diffLev;
 
@@ -166,7 +182,7 @@ int main () {
 
     // Saving space for time measurements
     
-    int check = 0;
+    int check = 1;
     int ch = 2;
     int row = 0;
     int col = 0;
@@ -174,6 +190,30 @@ int main () {
     while (ch != 3) {
         system("clear");
         display(showGrid);
+        // Check for complete filling
+        check = 1;
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++){
+                if (showGrid[i][j] == '.' && playGrid[i][j] != -1) {
+                    check = 0;
+                    break;
+                }
+            }
+        }
+        if (check) {
+            for (int i = 0; i < SIZE; i++) {
+                for(int j = 0; j < SIZE; j++) {
+                    if (playGrid[i][j] != -1 && (showGrid[i][j] == 'P' || showGrid[i][j] == '.')) {
+                        check = 0;
+                    }
+                }
+            }
+            if (check) {
+                cout << "YOU WIN !!";
+                return 0;
+            }
+        }
+
         cout << "Enter 1 to place flag \033[31m'P'\033[0m and 2 to reveal cell\nEnter 3 to exit\nEnter Value: ";
         cin >> ch;
         if (ch == 3) {
@@ -212,29 +252,6 @@ int main () {
             default: break;
         }
 
-        // Check for complete filling
-        check = 0;
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++){
-                if (showGrid[i][j] == '.') {
-                    check = 0;
-                    break;
-                }
-            }
-        }
-        if (check != 0) {
-            for (int i = 0; i < SIZE; i++) {
-                for(int j = 0; j < SIZE; j++) {
-                    if (playGrid[i][j] != -1 && showGrid[i][j] == 'P') {
-                        check = 0;
-                    }
-                }
-            }
-            if (check != 0) {
-                cout << "YOU WIN !!";
-                return 0;
-            }
-        }
     }
     return 0;
 }
