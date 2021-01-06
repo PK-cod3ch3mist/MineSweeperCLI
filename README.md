@@ -1,25 +1,4 @@
-888b     d888 d8b                                                    
-8888b   d8888 Y8P                                                    
-88888b.d88888                                                        
-888Y88888P888 888 88888b.   .d88b.                                   
-888 Y888P 888 888 888 "88b d8P  Y8b                                  
-888  Y8P  888 888 888  888 88888888                                  
-888   "   888 888 888  888 Y8b.                                      
-888       888 888 888  888  "Y8888                                   
-                                                                     
-                                                                     
-                                                                     
- .d8888b.                                                            
-d88P  Y88b                                                           
-Y88b.                                                                
- "Y888b.   888  888  888  .d88b.   .d88b.  88888b.   .d88b.  888d888 
-    "Y88b. 888  888  888 d8P  Y8b d8P  Y8b 888 "88b d8P  Y8b 888P"   
-      "888 888  888  888 88888888 88888888 888  888 88888888 888     
-Y88b  d88P Y88b 888 d88P Y8b.     Y8b.     888 d88P Y8b.     888     
- "Y8888P"   "Y8888888P"   "Y8888   "Y8888  88888P"   "Y8888  888     
-                                           888                       
-                                           888                       
-                                           888  
+![Image Header](https://github.com/PK-cod3ch3mist/MineSweeperCLI/blob/main/demo/Picture1.png)
 # MineSweeper v1.1
 A minesweeper game created in C++
 
@@ -47,14 +26,14 @@ This program now uses Unicode characters (Box Drawing, Flags and Geometric), ple
 All instructions will be there in the game.
 Starting Menu and Initial Play:
 
-![Starting Menu and Initial Play](https://github.com/PK-cod3ch3mist/MineSweeperCLI/blob/main/demogif/GIF1.gif)
+![Starting Menu and Initial Play](https://github.com/PK-cod3ch3mist/MineSweeperCLI/blob/main/demo/GIF1.gif)
 
 The different difficulty levels differ in the number of mines (however the number of mines in a game is randomized to a degree)
 Placing Flags: 
 
-![Placing Flags](https://github.com/PK-cod3ch3mist/MineSweeperCLI/blob/main/demogif/GIF2.gif)
+![Placing Flags](https://github.com/PK-cod3ch3mist/MineSweeperCLI/blob/main/demo/GIF2.gif)
 
 Note that flags are denoted by the letter P.
 Losing/Revealing a Mine:
 
-![Losing/Revealing Mine](https://github.com/PK-cod3ch3mist/MineSweeperCLI/blob/main/demogif/GIF3.gif)
+![Losing/Revealing Mine](https://github.com/PK-cod3ch3mist/MineSweeperCLI/blob/main/demo/GIF3.gif)
