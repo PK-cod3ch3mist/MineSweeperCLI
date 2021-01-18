@@ -33,7 +33,7 @@ Placing Flags:
 
 ![Placing Flags](https://github.com/PK-cod3ch3mist/MineSweeperCLI/blob/main/demo/GIF2.gif)
 
-Note that flags are denoted by the letter P.
+Note that flags are denoted by a red Unicode character.
 Losing/Revealing a Mine:
 
 ![Losing/Revealing Mine](https://github.com/PK-cod3ch3mist/MineSweeperCLI/blob/main/demo/GIF3.gif)
